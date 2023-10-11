@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Imperialismo</title>
+  <script src="./index.js?1" defer></script>
+  <script src="./ruleta.js?1" defer></script>
+</head>
+<body onload="iniciarJuego()">
+  <div id="portada" class="pantalla">
+    <h1>Imperialismo</h1>
+    <p>
+      Imperialismo de equipos
+    </p>
+  </div>
+  <div id="equipos" class="pantalla">
+    <table id="tablaEquipos">
+      <thead>
+        <tr><th>Equipo</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="ruleta" class="pantalla">
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </div>
+  <span id="atacante"></span> VS <span id="adversario"></span>
+  <div id="botones">
+    <button id="bmostrarAtacantes" onclick="mostrarAtacantes()">Atacantes</button>
+    <button id="bseleccionarAtacante" onclick="seleccionarAtacante()">Seleccionar Atacante</button>
+    <button id="bmostrarAdversarios" onclick="mostrarAdversarios()">Adversarios</button>
+    <button id="bseleccionarAdversario" onclick="seleccionarAdversario()">Seleccionar Adversario</button>
+    <button id="bmostrarPartido" onclick="mostrarPartido()">Partido</button>
+    <button id="biniciarCombate" onclick="iniciarCombate()">Iniciar Combate</button>
+  </div>
+</body>
+</html>
