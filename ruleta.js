@@ -64,7 +64,7 @@ function drawRouletteWheel() {
     for(var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
       //ctx.fillStyle = colors[i];
-      ctx.fillStyle = getColor(i, options.length);
+      ctx.fillStyle = Color(options[i]);// getColor(i, options.length);
 
       ctx.beginPath();
       ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);

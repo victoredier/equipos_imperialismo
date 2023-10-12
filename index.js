@@ -1,8 +1,46 @@
 let ListaOriginalEquipos = {
-  'equipoA' : { 'nombre': "Equipo 1", 'color': '#eeeeee'},
-  'equipoB' : { 'nombre': "Equipo 2", 'color': '#eeeeee'},
-  'equipoC' : { 'nombre': "Equipo 3", 'color': '#eeeeee'},
-  'equipoD' : { 'nombre': "Equipo 4", 'color': '#eeeeee'},
+  "sm_state_GB": { "nombre": "GB" , "color": "#FF5733"},
+  "sm_state_SE": { "nombre": "SE" , "color": "#33FF57"},
+  "sm_state_UA": { "nombre": "UA" , "color": "#3366FF"},
+  "sm_state_SI": { "nombre": "SI" , "color": "#A93226"},
+  "sm_state_SK": { "nombre": "SK" , "color": "#FFCE63"},
+  "sm_state_MK": { "nombre": "MK" , "color": "#0B3C49"},
+  "sm_state_CY": { "nombre": "CY" , "color": "#982136"},
+  "sm_state_RS": { "nombre": "RS" , "color": "#77D970"},
+  "sm_state_MD": { "nombre": "MD" , "color": "#6E45E2"},
+  "sm_state_ME": { "nombre": "ME" , "color": "#FF7F00"},
+  "sm_state_ES": { "nombre": "ES" , "color": "#1A936F"},
+  "sm_state_IE": { "nombre": "IE" , "color": "#DDA15E"},
+  "sm_state_AT": { "nombre": "AT" , "color": "#865680"},
+  "sm_state_CZ": { "nombre": "CZ" , "color": "#F4C542"},
+  "sm_state_IT": { "nombre": "IT" , "color": "#00818A"},
+  "sm_state_AL": { "nombre": "AL" , "color": "#D44919"},
+  "sm_state_IS": { "nombre": "IS" , "color": "#5B8B2A"},
+  "sm_state_EE": { "nombre": "EE" , "color": "#007991"},
+  "sm_state_AD": { "nombre": "AD" , "color": "#EA5C5A"},
+  "sm_state_CH": { "nombre": "CH" , "color": "#FFC512"},
+  "sm_state_XK": { "nombre": "XK" , "color": "#3C53A3"},
+  "sm_state_PL": { "nombre": "PL" , "color": "#8E44AD"},
+  "sm_state_RO": { "nombre": "RO" , "color": "#3498DB"},
+  "sm_state_LU": { "nombre": "LU" , "color": "#28B463"},
+  "sm_state_LT": { "nombre": "LT" , "color": "#E77F67"},
+  "sm_state_LV": { "nombre": "LV" , "color": "#59ABE3"},
+  "sm_state_LI": { "nombre": "LI" , "color": "#DFC95E"},
+  "sm_state_TR": { "nombre": "TR" , "color": "#F39C12"},
+  "sm_state_NO": { "nombre": "NO" , "color": "#27AE60"},
+  "sm_state_PT": { "nombre": "PT" , "color": "#E74C3C"},
+  "sm_state_NL": { "nombre": "NL" , "color": "#3498DB"},
+  "sm_state_GR": { "nombre": "GR" , "color": "#28B463"},
+  "sm_state_BY": { "nombre": "BY" , "color": "#D35400"},
+  "sm_state_FI": { "nombre": "FI" , "color": "#F1C40F"},
+  "sm_state_HU": { "nombre": "HU" , "color": "#3498DB"},
+  "sm_state_BA": { "nombre": "BA" , "color": "#28B463"},
+  "sm_state_DE": { "nombre": "DE" , "color": "#E74C3C"},
+  "sm_state_HR": { "nombre": "HR" , "color": "#8E44AD"},
+  "sm_state_DK": { "nombre": "DK" , "color": "#D35400"},
+  "sm_state_BG": { "nombre": "BG" , "color": "#F1C40F"},
+  "sm_state_FR": { "nombre": "FR" , "color": "#3498DB"},
+  "sm_state_BE": { "nombre": "BE" , "color": "#28B463"}  
 }
 
 let FronterasOriginales = {
@@ -20,6 +58,9 @@ let RuletaActiva = false;
 
 function Nombre(equipo) {
   return ListaOriginalEquipos[equipo]['nombre'];
+}
+function Color(equipo) {
+  return ListaOriginalEquipos[equipo]['color'];
 }
 
 function actualizarTablaEquipos() {
