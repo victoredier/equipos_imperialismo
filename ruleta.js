@@ -78,9 +78,9 @@ function drawRouletteWheel() {
       ctx.shadowBlur    = 0;
       ctx.shadowColor   = "rgb(220,220,220)";
       ctx.fillStyle = "black";
-      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
-                    250 + Math.sin(angle + arc / 2) * textRadius);
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 250 + Math.sin(angle + arc / 2) * textRadius);
+      //ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      ctx.rotate(angle);
       var text = Nombre(options[i]);
       ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
       ctx.restore();

@@ -1,54 +1,10 @@
-let ListaOriginalEquipos = {
-  "sm_state_GB": { "nombre": "GB" , "color": "#FF5733"},
-  "sm_state_SE": { "nombre": "SE" , "color": "#33FF57"},
-  "sm_state_UA": { "nombre": "UA" , "color": "#3366FF"},
-  "sm_state_SI": { "nombre": "SI" , "color": "#A93226"},
-  "sm_state_SK": { "nombre": "SK" , "color": "#FFCE63"},
-  "sm_state_MK": { "nombre": "MK" , "color": "#0B3C49"},
-  "sm_state_CY": { "nombre": "CY" , "color": "#982136"},
-  "sm_state_RS": { "nombre": "RS" , "color": "#77D970"},
-  "sm_state_MD": { "nombre": "MD" , "color": "#6E45E2"},
-  "sm_state_ME": { "nombre": "ME" , "color": "#FF7F00"},
-  "sm_state_ES": { "nombre": "ES" , "color": "#1A936F"},
-  "sm_state_IE": { "nombre": "IE" , "color": "#DDA15E"},
-  "sm_state_AT": { "nombre": "AT" , "color": "#865680"},
-  "sm_state_CZ": { "nombre": "CZ" , "color": "#F4C542"},
-  "sm_state_IT": { "nombre": "IT" , "color": "#00818A"},
-  "sm_state_AL": { "nombre": "AL" , "color": "#D44919"},
-  "sm_state_IS": { "nombre": "IS" , "color": "#5B8B2A"},
-  "sm_state_EE": { "nombre": "EE" , "color": "#007991"},
-  "sm_state_AD": { "nombre": "AD" , "color": "#EA5C5A"},
-  "sm_state_CH": { "nombre": "CH" , "color": "#FFC512"},
-  "sm_state_XK": { "nombre": "XK" , "color": "#3C53A3"},
-  "sm_state_PL": { "nombre": "PL" , "color": "#8E44AD"},
-  "sm_state_RO": { "nombre": "RO" , "color": "#3498DB"},
-  "sm_state_LU": { "nombre": "LU" , "color": "#28B463"},
-  "sm_state_LT": { "nombre": "LT" , "color": "#E77F67"},
-  "sm_state_LV": { "nombre": "LV" , "color": "#59ABE3"},
-  "sm_state_LI": { "nombre": "LI" , "color": "#DFC95E"},
-  "sm_state_TR": { "nombre": "TR" , "color": "#F39C12"},
-  "sm_state_NO": { "nombre": "NO" , "color": "#27AE60"},
-  "sm_state_PT": { "nombre": "PT" , "color": "#E74C3C"},
-  "sm_state_NL": { "nombre": "NL" , "color": "#3498DB"},
-  "sm_state_GR": { "nombre": "GR" , "color": "#28B463"},
-  "sm_state_BY": { "nombre": "BY" , "color": "#D35400"},
-  "sm_state_FI": { "nombre": "FI" , "color": "#F1C40F"},
-  "sm_state_HU": { "nombre": "HU" , "color": "#3498DB"},
-  "sm_state_BA": { "nombre": "BA" , "color": "#28B463"},
-  "sm_state_DE": { "nombre": "DE" , "color": "#E74C3C"},
-  "sm_state_HR": { "nombre": "HR" , "color": "#8E44AD"},
-  "sm_state_DK": { "nombre": "DK" , "color": "#D35400"},
-  "sm_state_BG": { "nombre": "BG" , "color": "#F1C40F"},
-  "sm_state_FR": { "nombre": "FR" , "color": "#3498DB"},
-  "sm_state_BE": { "nombre": "BE" , "color": "#28B463"}  
-}
+import {PaisesOriginalEquipos, PaisesFronterasOriginales} from "./paises.js?3";
 
-let FronterasOriginales = {
-  'equipoA' : ['equipoB', 'equipoC'],
-  'equipoB' : ['equipoA', 'equipoD'],
-  'equipoC' : ['equipoA', 'equipoD'],
-  'equipoD' : ['equipoB', 'equipoC'],
-}
+let ListaOriginalEquipos = PaisesOriginalEquipos;
+
+
+let FronterasOriginales = PaisesFronterasOriginales;
+
 
 let Fronteras = {};
 let Equipos = [];
@@ -62,30 +18,42 @@ function Nombre(equipo) {
 function Color(equipo) {
   return ListaOriginalEquipos[equipo]['color'];
 }
-
+function agregarCelda(tr, equipo) {
+  let c  = document.createElement('td');
+  let td = document.createElement('td');
+  let nombre = Nombre(equipo);
+  td.innerHTML = nombre;
+  c.classList.add('td_equipo');
+  c.classList.add('td_'+equipo);
+  tr.appendChild(c);
+  tr.appendChild(td);
+}
 function actualizarTablaEquipos() {
   let tabla = document.getElementById('tablaEquipos');
-  var tbody = document.createElement('tbody');
-  var anterior = tabla.tBodies[0]
+  let tbody = document.createElement('tbody');
+  let anterior = tabla.tBodies[0]
   for (let index = 0; index < Equipos.length; index++) {
     const equipo = Equipos[index];
     let tr = document.createElement('tr');
-    let td = document.createElement('td');
-    let nombre = Nombre(equipo);
-    td.innerHTML = nombre;
-    tr.appendChild(td);
+    agregarCelda(tr, equipo);
     tbody.appendChild(tr);
   }
   tabla.replaceChild(tbody, anterior)
 }
-
+function agregarPartidoTabla(ganador, perdedor) {
+  let tbody = document.getElementById("tbodyPartidos");
+  let tr = document.createElement('tr');
+  agregarCelda(tr, ganador);
+  agregarCelda(tr, perdedor);
+  tbody.appendChild(tr);
+}
 function actualizarBotones() {
-  let bmostrarAtacantes = 
-  bseleccionarAtacante = 
-  bmostrarAdversarios = 
-  bseleccionarAdversario = 
-  bmostrarPartido =
-  biniciarCombate = true;
+  let bmostrarAtacantes      = true;
+  let bseleccionarAtacante   = true;
+  let bmostrarAdversarios    = true;
+  let bseleccionarAdversario = true;
+  let bmostrarPartido        = true;
+  let biniciarCombate        = true;
   if(!RuletaActiva){
     bmostrarAtacantes = false;
     bseleccionarAtacante = false;
@@ -107,13 +75,88 @@ function actualizarBotones() {
   document.getElementById('atacante').innerText = Atacante ? Nombre(Atacante) : 'Atacante';
   document.getElementById('adversario').innerText = Adversario ? Nombre(Adversario) : 'Adversario';
 }
-
 function iniciarJuego() {
   reiniciarJuego();
+  let colores = document.getElementById('colores').sheet;
+  Equipos.forEach(equipo => {
+    let color = Color(equipo);
+    let regla = '.'+equipo+' {fill: '+color+';}';
+    colores.insertRule(regla);
+    regla = '.td_'+equipo+' {background: '+color+';}';
+    colores.insertRule(regla);
+  });
 }
 function reiniciarJuego() {
   Fronteras = FronterasOriginales;
   Equipos = Object.keys(ListaOriginalEquipos);
+  
+  let EquiposconFronteras = [];
+  for (const equipo in Fronteras) {
+    if (Object.hasOwnProperty.call(Fronteras, equipo)) {
+      const element = Fronteras[equipo];
+      EquiposconFronteras.push(equipo);
+      for (let index = 0; index < element.length; index++) {
+        const equi = element[index];
+        const jj = Equipos.indexOf(equi);
+        if (jj == -1) {
+          console.log('pais no definido ', equi);
+        }
+      }
+    }
+  }
+  let sinFronteras = [];
+  for (let index = 0; index < Equipos.length; index++) {
+    const equi = Equipos[index];
+    const jj = EquiposconFronteras.indexOf(equi);
+    if (jj == -1) {
+      console.log('pais sin fronteras ', equi);
+      sinFronteras.push(equi);
+    }
+  }
+  let newFronteras = {};
+  for (let ii = 0; ii < sinFronteras.length; ii++) {
+    const equi = sinFronteras[ii];
+    newFronteras[equi] = [];
+    for (const equipo in Fronteras) {
+      if (Object.hasOwnProperty.call(Fronteras, equipo)) {
+        const element = Fronteras[equipo];
+        const jj = element.indexOf(equi);
+        if (jj != -1) {
+          //console.log('agregar ', equipo, ' a ', equi)
+          newFronteras[equi].push(equipo)
+        }
+      }
+    }
+  }
+  let missing = {}
+  for (const equipo in Fronteras) {
+    if (Object.hasOwnProperty.call(Fronteras, equipo)) {
+      const fronteras = Fronteras[equipo];
+      for (let index = 0; index < fronteras.length; index++) {
+        const equi = fronteras[index];
+        const front = Fronteras[equi];
+        const jj = front.indexOf(equipo);
+        if (jj == -1) {
+          if (!missing.hasOwnProperty(equi)) {
+            missing[equi] = [];
+          }
+          missing[equi].push(equipo);
+        }
+      }
+    }
+  }
+  for (const equipo in missing) {
+    if (Object.hasOwnProperty.call(missing, equipo)) {
+      const fronteras = missing[equipo];
+      let sss = '"'+equipo+'": [';
+      for (let index = 0; index < fronteras.length; index++) {
+        const equi = fronteras[index];
+        sss += '"'+equi+'", ';
+      }
+      sss += '],';
+      console.log(sss);
+    }
+  }
   actualizar();
 }
 function hayEquipos() {
@@ -137,7 +180,6 @@ function seleccionarAtacante(){
   RuletaActiva = true;
   spineWheel();
 }
-
 function mostrarAdversarios(){
   if (!hayEquipos()) return;
   Adversario = null;
@@ -149,7 +191,6 @@ function seleccionarAdversario(){
   RuletaActiva = true;
   spineWheel();
 }
-
 function mostrarPartido() {
   if (!hayEquipos()) return;
   actualizarRuleta();
@@ -159,7 +200,6 @@ function iniciarCombate(){
   RuletaActiva = true;
   spineWheel();
 }
-
 function actualizarRuleta() {
   if(!(typeof initRouletteWheel !== 'undefined')) return;
   if (!hayEquipos()) return;
@@ -179,7 +219,6 @@ function actualizarRuleta() {
     }
   }
 }
-
 function eliminarEquipo(lista, equipo) {
   const index = lista.indexOf(equipo);
   if(index != -1) {
@@ -187,7 +226,6 @@ function eliminarEquipo(lista, equipo) {
   }
   return lista;
 }
-
 function reemplazarEquipo(lista, equipo1, equipo2) {
   const index = lista.indexOf(equipo1);
   if(index != -1) {
@@ -197,12 +235,10 @@ function reemplazarEquipo(lista, equipo1, equipo2) {
   }
   return lista;
 }
-
 function unirFronteras(lista1, lista2) {
   let c = lista1.concat(lista2);
   return c.filter((item, pos) => c.indexOf(item) === pos);
 }
-
 function finPartido(ganador) {
   let perdedor = ganador == Atacante ? Adversario : Atacante;
   Equipos = eliminarEquipo(Equipos, perdedor);
@@ -216,6 +252,8 @@ function finPartido(ganador) {
     }
     Fronteras[equipo] = fronteras;
   }
+  moverClass(ganador, perdedor);
+  agregarPartidoTabla(ganador, perdedor);
   Atacante = null;
   Adversario = null;
   actualizarTablaEquipos();
@@ -224,7 +262,6 @@ function finPartido(ganador) {
     // Campeon
   }
 }
-
 function finRuleta(equipo) {
   //
   if (!Boolean(Atacante)) {
@@ -240,3 +277,21 @@ function finRuleta(equipo) {
   RuletaActiva = false;
   actualizarBotones();
 }
+function moverClass(ganador, perdedor) {
+  let elementos = document.getElementsByClassName(perdedor);
+  for (let index = elementos.length - 1; index >= 0; index--) {
+    const elemento = elementos[index];
+    elemento.classList.replace(perdedor, ganador);
+  }
+}
+
+window.iniciarJuego = iniciarJuego;
+window.mostrarAtacantes = mostrarAtacantes;
+window.seleccionarAtacante = seleccionarAtacante;
+window.mostrarAdversarios = mostrarAdversarios;
+window.seleccionarAdversario = seleccionarAdversario;
+window.mostrarPartido = mostrarPartido;
+window.iniciarCombate = iniciarCombate;
+window.Color = Color;
+window.Nombre = Nombre;
+window.finRuleta = finRuleta;
