@@ -50,7 +50,7 @@ function drawRouletteWheel() {
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     var outsideRadius = 200;
-    var textRadius = 160;
+    var textRadius = 145;
     var insideRadius = 10;//125;
 
     ctx = canvas.getContext("2d");
@@ -76,11 +76,11 @@ function drawRouletteWheel() {
       ctx.shadowOffsetX = -1;
       ctx.shadowOffsetY = -1;
       ctx.shadowBlur    = 0;
-      ctx.shadowColor   = "rgb(220,220,220)";
+      //ctx.shadowColor   = "rgb(220,220,220)";
       ctx.fillStyle = "black";
       ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 250 + Math.sin(angle + arc / 2) * textRadius);
       //ctx.rotate(angle + arc / 2 + Math.PI / 2);
-      ctx.rotate(angle);
+      ctx.rotate(angle + (arc / 2));
       var text = Nombre(options[i]);
       ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
       ctx.restore();
@@ -126,6 +126,12 @@ function stopRotateWheel() {
   var arcd = arc * 180 / Math.PI;
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
+  ctx.beginPath();
+  ctx.fillStyle = Color(options[index]);
+  ctx.arc(250, 250, 160, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.fill();
+  ctx.fillStyle = "black";
   ctx.font = 'bold 30px Helvetica, Arial';
   var text = Nombre(options[index])
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
